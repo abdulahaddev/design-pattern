@@ -4,7 +4,10 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            Duck mallardDuck = new MallardDuck();
+
+            mallardDuck.PerformQuack();
+            mallardDuck.PerformFly();
         }
     }
 }
