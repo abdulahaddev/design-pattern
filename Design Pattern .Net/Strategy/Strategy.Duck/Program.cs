@@ -8,6 +8,12 @@
 
             mallardDuck.PerformQuack();
             mallardDuck.PerformFly();
+
+            var model = new ModelDuck();
+            model.PerformFly();
+
+            model.SetFlyBehavior(new FlyRocketPowered());
+            model.PerformFly();
         }
     }
 }

@@ -26,6 +26,14 @@
         }
     }
 
+    public class FlyRocketPowered : IFlyBehavior
+    {
+        public void DoFly()
+        {
+            Console.WriteLine("I'm flying with a rocket...");
+        }
+    }
+
     public class Quack : IQuackBehavior
     {
         public void DoQuack()
@@ -58,6 +66,11 @@
         protected IQuackBehavior QuackBehavior { get => quackBehavior; set => quackBehavior = value; }
         protected IFlyBehavior FlyBehavior { get => flyBehavior; set => flyBehavior = value; }
 
+        public void SetQuackBehavior (IQuackBehavior quackBehavior) => this.quackBehavior = quackBehavior;
+        public void SetFlyBehavior (IFlyBehavior flyBehavior) => this.flyBehavior = flyBehavior;
+
+        public abstract void Display();
+
         public void PerformQuack()
         {
             quackBehavior.DoQuack();
@@ -82,9 +95,23 @@
             FlyBehavior = new FlyWithWings();
         }
 
-        public void Display()
+        public override void Display()
         {
             Console.WriteLine("I'm a real Mallard Duck!");
+        }
+    }
+
+    public class ModelDuck : Duck
+    {
+        public ModelDuck()
+        {
+            FlyBehavior = new FlyNoWay();
+            QuackBehavior = new Quack();
+        }
+
+        public override void Display()
+        {
+            Console.WriteLine("I'm a model duck!");
         }
     }
 }
